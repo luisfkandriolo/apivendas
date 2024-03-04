@@ -32,6 +32,7 @@ app.use(
       const [joiError] = error.details.values();
       const fieldName = joiError.details[0].path[0];
       const errorType = joiError.details[0].type;
+      const ref = joiError.details[0].context?.valids?.[0].key;
       const defaultMessageError = joiError.message;
       return response.status(400).json({
         status: 'error',
@@ -40,6 +41,7 @@ app.use(
           errorType,
           segment,
           defaultMessageError,
+          ref,
         ),
       });
     }

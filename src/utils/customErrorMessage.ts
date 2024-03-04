@@ -5,6 +5,7 @@ const customErrorMessage = (
   type: string,
   segment: string,
   defaultMessageError: string,
+  ref?: string,
 ): string | Record<string, string> => {
   const customErrors: LanguageMessages = {
     'string.empty': `${field} cant be empty (${segment})`,
@@ -13,6 +14,7 @@ const customErrorMessage = (
     'any.unknown': `${field} is not allowed (${segment})`,
     'object.unknown': `${field} is not allowed (${segment})`,
     'string.guid': `${field} is not valid uuid (${segment})`,
+    'any.only': `${field} must be equal to ${ref} (${segment})`,
   };
 
   const returnMessage = customErrors[type as keyof LanguageMessages]
